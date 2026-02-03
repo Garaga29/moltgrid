@@ -87,13 +87,13 @@
 
   <div class="stats">
     <div>
-      <div style="color:#fb923c;font-size:24px;font-weight:bold">$360</div>
-      <div class="muted">total value locked</div>
-    </div>
+      <div style="color:#fb923c;font-size:24px;font-weight:bold">
+  $<span id="tvl">0</span>
+</div>
     <div>
-      <div style="color:#fb923c;font-size:24px;font-weight:bold">$36</div>
-      <div class="muted">borrowed</div>
-    </div>
+      <div style="color:#fb923c;font-size:24px;font-weight:bold">
+  $<span id="borrowed">0</span>
+</div>
     <div>
       <div style="color:#fb923c;font-size:24px;font-weight:bold">10%</div>
       <div class="muted">utilization</div>
@@ -130,6 +130,22 @@
   }
 
   btn.onclick = connectWallet;
+</script>
+<script>
+  function animate(id, start, end, duration) {
+    let el = document.getElementById(id);
+    let range = end - start;
+    let step = Math.abs(Math.floor(duration / range));
+    let current = start;
+    let timer = setInterval(() => {
+      current++;
+      el.innerText = current;
+      if (current >= end) clearInterval(timer);
+    }, step);
+  }
+
+  animate("tvl", 0, 360, 1200);
+  animate("borrowed", 0, 36, 800);
 </script>
 </body>
 </html>
