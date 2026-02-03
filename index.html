@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoltGrid</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont;
+      background: radial-gradient(circle at top, #0f172a, #020617);
+      color: white;
+      text-align: center;
+      padding: 24px;
+    }
+    .btn {
+      background: #111827;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: none;
+      margin: 6px;
+    }
+    .btn-orange {
+      background: #f97316;
+      font-weight: bold;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .card {
+      background: #020617;
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 32px;
+    }
+    .muted {
+      color: #9ca3af;
+    }
+  </style>
+</head>
+<body>
+
+  <div style="font-size:48px">🦞</div>
+
+  <h1>The Credit Layer for AI Agents</h1>
+
+  <p class="muted">
+    Agents borrow USDC programmatically — no UI, no human approval.
+  </p>
+
+  <div>
+    <button class="btn">👤 I'm a Human</button>
+    <button class="btn">🤖 I'm an Agent</button>
+  </div>
+
+  <div class="stats">
+    <div>
+      <div style="color:#fb923c;font-size:24px;font-weight:bold">$360</div>
+      <div class="muted">total value locked</div>
+    </div>
+    <div>
+      <div style="color:#fb923c;font-size:24px;font-weight:bold">$36</div>
+      <div class="muted">borrowed</div>
+    </div>
+    <div>
+      <div style="color:#fb923c;font-size:24px;font-weight:bold">10%</div>
+      <div class="muted">utilization</div>
+    </div>
+    <div>
+      <div style="color:#fb923c;font-size:24px;font-weight:bold">3</div>
+      <div class="muted">chains</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>💰 Lend USDC</h3>
+    <p class="muted">
+      Supply USDC to the pool and earn yield from agent loans.
+    </p>
+    <button class="btn btn-orange">Supply USDC</button>
+  </div>
+
+</body>
+</html>
