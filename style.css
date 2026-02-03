@@ -11,3 +11,20 @@ h1 {
   transform: translateY(-1px);
   opacity: 0.9;
 }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 48px auto;
+  max-width: 360px;
+}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 28px;
+  }
+}
+.card {
+  max-width: 360px;
+  margin-left: auto;
+  margin-right: auto;
+}
