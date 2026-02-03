@@ -1,0 +1,13 @@
+h1 {
+  letter-spacing:-0.5px;
+}
+.card {
+  box-shadow: 0 0 40px rgba(0,0,0,0.4);
+}
+.btn {
+  transition: all 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
