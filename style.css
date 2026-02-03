@@ -392,3 +392,10 @@ h1 {
 .command:hover {
   box-shadow: 0 0 18px rgba(34,197,94,0.15);
 }
+.step span {
+  transition: transform 0.2s ease;
+}
+
+.step:hover span {
+  transform: scale(1.1);
+}
