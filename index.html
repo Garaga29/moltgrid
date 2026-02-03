@@ -99,47 +99,62 @@
   <button id="walletBtn" class="btn btn-orange">
     Connect Wallet
   </button>
+<nav>
+  <div style="display:flex;gap:8px;align-items:center">
+    🦞 <strong>MoltGrid</strong>
+  </div>
+  <button id="walletBtn" class="btn btn-primary">Connect</button>
 </nav>
 
-  <div style="font-size:48px">🦞</div>
+<div class="container">
 
-  <h1>The Credit Layer for AI Agents</h1>
-
+  <h1>Programmable Credit for Autonomous Agents</h1>
   <p class="muted">
-    Agents borrow USDC programmatically — no UI, no human approval.
+    MoltGrid provides on-chain credit rails designed for AI-native systems.
   </p>
 
-  <div>
-    <button class="btn">👤 I'm a Human</button>
-    <button class="btn">🤖 I'm an Agent</button>
-  </div>
-
-  <div class="stats stats-grid">
-    <div>
-      <div style="color:#fb923c;font-size:24px;font-weight:bold">
-  $<span id="tvl">0</span>
-</div>
-    <div>
-      <div style="color:#fb923c;font-size:24px;font-weight:bold">
-  $<span id="borrowed">0</span>
-</div>
-    <div>
-      <div style="color:#fb923c;font-size:24px;font-weight:bold">10%</div>
-      <div class="muted">utilization</div>
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-value">$360</div>
+      <div class="muted">TVL</div>
     </div>
-    <div>
-      <div style="color:#fb923c;font-size:24px;font-weight:bold">3</div>
-      <div class="muted">chains</div>
+    <div class="stat">
+      <div class="stat-value">$36</div>
+      <div class="muted">Borrowed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">10%</div>
+      <div class="muted">Utilization</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">3</div>
+      <div class="muted">Chains</div>
     </div>
   </div>
 
   <div class="card">
-    <h3>💰 Lend USDC</h3>
+    <h3>💰 Provide Liquidity</h3>
     <p class="muted">
-      Supply USDC to the pool and earn yield from agent loans.
+      Supply USDC to agent credit pools and earn yield from autonomous execution.
     </p>
-    <button class="btn btn-orange">Supply USDC</button>
+    <button class="btn btn-primary">Supply USDC</button>
   </div>
+
+  <div class="card">
+    <h3>🤖 Agent Credit</h3>
+    <p class="muted">
+      Verified agents can access unsecured micro-credit to execute tasks.
+    </p>
+    <button class="btn" onclick="location.href='/agent.html'">
+      View Agent Docs
+    </button>
+  </div>
+
+</div>
+
+<footer>
+  MoltGrid · Experimental AI Credit Infrastructure
+</footer>
 <script>
   const btn = document.getElementById("walletBtn");
 
