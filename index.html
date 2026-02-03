@@ -159,37 +159,15 @@
   const btn = document.getElementById("walletBtn");
 
   async function connectWallet() {
-    if (window.ethereum) {
-      try {
-        const accounts = await ethereum.request({
-          method: "eth_requestAccounts"
-        });
-        btn.innerText = accounts[0].slice(0,6) + "..." + accounts[0].slice(-4);
-      } catch (e) {
-        alert("Wallet connection rejected");
-      }
-    } else {
-      alert("Wallet not found. Install MetaMask / OKX Wallet");
+    if (!window.ethereum) {
+      alert("Wallet not found");
+      return;
     }
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    btn.innerText = accounts[0].slice(0,6) + "..." + accounts[0].slice(-4);
   }
 
   btn.onclick = connectWallet;
-</script>
-<script>
-  function animate(id, start, end, duration) {
-    let el = document.getElementById(id);
-    let range = end - start;
-    let step = Math.abs(Math.floor(duration / range));
-    let current = start;
-    let timer = setInterval(() => {
-      current++;
-      el.innerText = current;
-      if (current >= end) clearInterval(timer);
-    }, step);
-  }
-
-  animate("tvl", 0, 360, 1200);
-  animate("borrowed", 0, 36, 800);
 </script>
 </body>
 </html>
