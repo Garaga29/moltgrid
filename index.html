@@ -42,7 +42,20 @@
     }
   </style>
 </head>
-<body>
+<nav style="
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px;
+">
+  <div style="font-weight:bold;display:flex;gap:8px;align-items:center">
+    🦞 <span>MoltGrid</span>
+  </div>
+
+  <button id="walletBtn" class="btn btn-orange">
+    Connect Wallet
+  </button>
+</nav>
 
   <div style="font-size:48px">🦞</div>
 
@@ -83,6 +96,25 @@
     </p>
     <button class="btn btn-orange">Supply USDC</button>
   </div>
+<script>
+  const btn = document.getElementById("walletBtn");
 
+  async function connectWallet() {
+    if (window.ethereum) {
+      try {
+        const accounts = await ethereum.request({
+          method: "eth_requestAccounts"
+        });
+        btn.innerText = accounts[0].slice(0,6) + "..." + accounts[0].slice(-4);
+      } catch (e) {
+        alert("Wallet connection rejected");
+      }
+    } else {
+      alert("Wallet not found. Install MetaMask / OKX Wallet");
+    }
+  }
+
+  btn.onclick = connectWallet;
+</script>
 </body>
 </html>
