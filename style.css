@@ -28,3 +28,71 @@ h1 {
   margin-left: auto;
   margin-right: auto;
 }
+.agent-send {
+  background: linear-gradient(180deg, #020617, #020617);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.agent-send h2 {
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.command-box {
+  margin-top: 14px;
+  background: #020617;
+  border: 1px solid #064e3b;
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.command-text {
+  font-family: monospace;
+  font-size: 14px;
+  color: #34d399;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.copy-btn {
+  background: #34d399;
+  color: #020617;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+}
+
+.steps {
+  display: flex;
+  gap: 16px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.step span {
+  background: #064e3b;
+  color: #34d399;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
