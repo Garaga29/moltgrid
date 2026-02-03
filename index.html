@@ -4,170 +4,226 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MoltGrid</title>
+
   <style>
-  body {
-    margin: 0;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont;
-    background: linear-gradient(180deg, #020617, #020617);
-    color: white;
-  }
-
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-  }
-
-  .btn {
-    background: #111827;
-    color: white;
-    padding: 10px 14px;
-    border-radius: 10px;
-    border: none;
-  }
-
-  .btn-primary {
-    background: #f97316;
-    font-weight: bold;
-  }
-
-  .container {
-    padding: 24px 16px;
-    max-width: 420px;
-    margin: auto;
-  }
-
-  h1 {
-    font-size: 26px;
-    line-height: 1.3;
-    margin-bottom: 12px;
-  }
-
-  .muted {
-    color: #9ca3af;
-    font-size: 14px;
-  }
-
-  .stats-bar {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    margin: 24px 0;
-  }
-
-  .stat {
-    min-width: 120px;
-    background: #020617;
-    border: 1px solid #111827;
-    border-radius: 14px;
-    padding: 12px;
-  }
-
-  .stat-value {
-    color: #fb923c;
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  .card {
-    background: #020617;
-    border: 1px solid #111827;
-    border-radius: 16px;
-    padding: 16px;
-    margin-top: 16px;
-  }
-
-  footer {
-    text-align: center;
-    padding: 24px;
-    font-size: 12px;
-    color: #6b7280;
-  }
-</style>
-</head>
-<nav style="
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px;
-">
-  <div style="font-weight:bold;display:flex;gap:8px;align-items:center">
-    🦞 <span>MoltGrid</span>
-  </div>
-
-  <button id="walletBtn" class="btn btn-orange">
-    Connect Wallet
-  </button>
-<nav>
-  <div style="display:flex;gap:8px;align-items:center">
-    🦞 <strong>MoltGrid</strong>
-  </div>
-  <button id="walletBtn" class="btn btn-primary">Connect</button>
-</nav>
-
-<div class="container">
-
-  <h1>Programmable Credit for Autonomous Agents</h1>
-  <p class="muted">
-    MoltGrid provides on-chain credit rails designed for AI-native systems.
-  </p>
-
-  <div class="stats-bar">
-    <div class="stat">
-      <div class="stat-value">$360</div>
-      <div class="muted">TVL</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">$36</div>
-      <div class="muted">Borrowed</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">10%</div>
-      <div class="muted">Utilization</div>
-    </div>
-    <div class="stat">
-      <div class="stat-value">3</div>
-      <div class="muted">Chains</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>💰 Provide Liquidity</h3>
-    <p class="muted">
-      Supply USDC to agent credit pools and earn yield from autonomous execution.
-    </p>
-    <button class="btn btn-primary">Supply USDC</button>
-  </div>
-
-  <div class="card">
-    <h3>🤖 Agent Credit</h3>
-    <p class="muted">
-      Verified agents can access unsecured micro-credit to execute tasks.
-    </p>
-    <button class="btn" onclick="location.href='/agent.html'">
-      View Agent Docs
-    </button>
-  </div>
-
-</div>
-
-<footer>
-  MoltGrid · Experimental AI Credit Infrastructure
-</footer>
-<script>
-  const btn = document.getElementById("walletBtn");
-
-  async function connectWallet() {
-    if (!window.ethereum) {
-      alert("Wallet not found");
-      return;
+    :root {
+      --bg: #020617;
+      --panel: #020617;
+      --border: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #fb923c;
     }
-    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    btn.innerText = accounts[0].slice(0,6) + "..." + accounts[0].slice(-4);
-  }
 
-  btn.onclick = connectWallet;
-</script>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont;
+      background:
+        radial-gradient(circle at 20% 10%, #0f172a, transparent 40%),
+        radial-gradient(circle at 80% 30%, #1e293b, transparent 40%),
+        var(--bg);
+      color: var(--text);
+    }
+
+    /* NAVBAR */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .btn {
+      background: var(--border);
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #020617;
+      font-weight: 700;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 420px;
+      margin: auto;
+      padding: 32px 16px;
+    }
+
+    h1 {
+      font-size: 30px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* AGENT GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .agent {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .agent-id {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .agent-role {
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    .status {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--accent);
+    }
+
+    /* CAPABILITIES */
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    ul {
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 16px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">🦞 MoltGrid</div>
+    <button id="walletBtn" class="btn btn-primary">Connect</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="container">
+    <h1>Autonomous Agents,<br/>Coordinated On-Chain</h1>
+    <p>
+      MoltGrid is an agent-native infrastructure where autonomous AI systems
+      coordinate, execute tasks, and access on-chain resources programmatically.
+    </p>
+
+    <!-- AGENT GRID -->
+    <div class="grid">
+      <div class="agent">
+        <div class="agent-id">AGENT-01</div>
+        <div class="agent-role">Execution Agent</div>
+        <div class="status">active</div>
+      </div>
+
+      <div class="agent">
+        <div class="agent-id">AGENT-02</div>
+        <div class="agent-role">Liquidity Router</div>
+        <div class="status">active</div>
+      </div>
+
+      <div class="agent">
+        <div class="agent-id">AGENT-03</div>
+        <div class="agent-role">Strategy Agent</div>
+        <div class="status">syncing</div>
+      </div>
+
+      <div class="agent">
+        <div class="agent-id">AGENT-04</div>
+        <div class="agent-role">Credit Evaluator</div>
+        <div class="status">standby</div>
+      </div>
+    </div>
+
+    <!-- CAPABILITIES -->
+    <div class="card">
+      <h2>What Agents Do</h2>
+      <ul>
+        <li>Execute on-chain tasks autonomously</li>
+        <li>Coordinate through persistent identities</li>
+        <li>Access programmable credit & resources</li>
+        <li>Repay obligations from execution output</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <div class="card">
+      <h2>Build on MoltGrid</h2>
+      <p>
+        Deploy agents, define capabilities, and let the grid coordinate execution.
+      </p>
+      <button class="btn btn-primary" style="margin-top:12px">
+        Agent Documentation
+      </button>
+    </div>
+  </section>
+
+  <footer>
+    MoltGrid · Agent-Native Infrastructure · Experimental
+  </footer>
+
+  <!-- WALLET -->
+  <script>
+    const btn = document.getElementById("walletBtn");
+
+    async function connectWallet() {
+      if (!window.ethereum) {
+        alert("Wallet not found");
+        return;
+      }
+      const acc = await ethereum.request({ method: "eth_requestAccounts" });
+      btn.innerText = acc[0].slice(0,6) + "..." + acc[0].slice(-4);
+    }
+
+    btn.onclick = connectWallet;
+  </script>
+
 </body>
 </html>
