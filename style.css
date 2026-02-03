@@ -281,3 +281,92 @@ h1 {
   text-decoration: none;
   font-weight: 600;
 }
+.agent-console {
+  margin-top: 48px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: #020617;
+  padding: 20px;
+}
+
+.console-header {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.console-title {
+  margin-top: 6px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.console-box {
+  margin-top: 16px;
+  border: 1px solid #0f766e;
+  border-radius: 14px;
+  background: #020617;
+  padding: 14px;
+  font-family: monospace;
+  font-size: 14px;
+  color: #34d399;
+  line-height: 1.6;
+}
+
+.console-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.console-actions button {
+  background: #34d399;
+  color: #020617;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.console-steps {
+  margin-top: 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.console-step {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.console-step span {
+  min-width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: #0f766e;
+  color: #34d399;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.console-footer {
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.console-footer a {
+  color: #34d399;
+  text-decoration: none;
+  font-weight: 600;
+}
