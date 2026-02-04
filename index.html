@@ -136,6 +136,12 @@ header {
     </a>
   </div>
 </section>
+<script>
+  const cards = document.querySelectorAll('.card');
 
+  cards.forEach((card, i) => {
+    card.style.animationDelay = `${i * 120}ms`;
+  });
+</script>
 </body>
 </html>
