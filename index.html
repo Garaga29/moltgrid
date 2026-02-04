@@ -1,230 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MoltGuard — On-Chain Rug Risk Monitor</title>
-  <meta name="description" content="MoltGuard monitors contracts, dev wallets, and on-chain behavior to detect rug risks early."/>
-  <style>
-    :root {
-      --bg:#0b0e14;
-      --card:#111624;
-      --text:#e6e9f0;
-      --muted:#9aa3b2;
-      --safe:#00d084;
-      --warn:#ffb020;
-      --danger:#ff3b3b;
-      --border:#1d2233;
-    }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MoltGuard — Lobster AI Rug Detection</title>
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"Inter",sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
+<style>
+:root{
+  --bg:#070a0f;
+  --card:#0e1422;
+  --text:#f4f6fb;
+  --muted:#9aa3b2;
+  --red:#ff3b3b;
+  --orange:#ffb020;
+  --green:#00e0a4;
+  --border:#1f2740;
+}
 
-    .container{max-width:1100px;margin:auto;padding:32px 20px}
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:70px;
-    }
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Inter",sans-serif;
+  background:radial-gradient(circle at top,#0e1422,#070a0f 70%);
+  color:var(--text);
+}
 
-    .logo{font-weight:700;font-size:20px}
-    .btn{
-      padding:10px 18px;
-      border-radius:8px;
-      border:1px solid var(--border);
-      background:transparent;
-      color:var(--text);
-      cursor:pointer;
-    }
-    .btn.primary{
-      background:var(--danger);
-      border-color:var(--danger);
-      color:#fff;
-    }
+.container{max-width:1100px;margin:auto;padding:32px 20px}
 
-    .hero{text-align:center;margin-bottom:80px}
-    .hero h1{font-size:44px;margin-bottom:14px}
-    .hero p{color:var(--muted);max-width:640px;margin:0 auto 30px;font-size:18px}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:80px;
+}
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:24px;
-      margin-bottom:30px;
-    }
+.logo{
+  font-size:22px;
+  font-weight:800;
+  letter-spacing:0.5px;
+}
+.logo span{color:var(--red)}
 
-    .scan-form{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
+.btn{
+  padding:12px 20px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:#0b1020;
+  color:var(--text);
+  cursor:pointer;
+}
 
-    input{
-      flex:1;
-      min-width:220px;
-      padding:14px;
-      border-radius:10px;
-      border:1px solid var(--border);
-      background:#0f1320;
-      color:var(--text);
-      font-size:15px;
-    }
+.btn.primary{
+  background:linear-gradient(135deg,#ff3b3b,#ff7a18);
+  border:none;
+}
 
-    .meter{
-      margin-top:30px;
-    }
+.hero{text-align:center;margin-bottom:90px}
+.hero h1{font-size:48px;margin-bottom:14px}
+.hero p{color:var(--muted);max-width:640px;margin:auto;font-size:18px}
 
-    .meter-bar{
-      height:14px;
-      background:#1a2033;
-      border-radius:10px;
-      overflow:hidden;
-    }
+.card{
+  background:linear-gradient(180deg,#0e1422,#0b1020);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:26px;
+  margin-bottom:30px;
+}
 
-    .meter-fill{
-      height:100%;
-      width:0%;
-      background:var(--safe);
-      transition:width 0.4s ease, background 0.4s ease;
-    }
+input{
+  width:100%;
+  padding:16px;
+  background:#070b18;
+  border:1px solid var(--border);
+  border-radius:12px;
+  color:var(--text);
+  margin-bottom:14px;
+}
 
-    .meter-info{
-      display:flex;
-      justify-content:space-between;
-      margin-top:10px;
-      font-size:14px;
-      color:var(--muted);
-    }
+.meter{
+  margin-top:22px;
+}
+.bar{
+  height:16px;
+  background:#1b2340;
+  border-radius:20px;
+  overflow:hidden;
+}
+.fill{
+  height:100%;
+  width:0%;
+  background:var(--green);
+  transition:0.4s;
+}
+.meter-info{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  color:var(--muted);
+}
 
-    .signals li{
-      list-style:none;
-      padding:10px 0;
-      border-bottom:1px solid var(--border);
-      color:var(--muted);
-    }
+ul li{
+  list-style:none;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  color:var(--muted);
+}
 
-    footer{
-      text-align:center;
-      color:var(--muted);
-      font-size:14px;
-      margin-top:60px;
-    }
-  </style>
+footer{
+  text-align:center;
+  color:var(--muted);
+  margin-top:60px;
+  font-size:14px;
+}
+</style>
 </head>
-<body>
 
+<body>
 <div class="container">
 
 <header>
-  <div class="logo">🛡️ MoltGuard</div>
-  <a class="btn" href="#">Early Access</a>
+  <div class="logo">🦞 Molt<span>Guard</span></div>
+  <button class="btn">Early Access</button>
 </header>
 
 <section class="hero">
-  <h1>Detect rug risk before liquidity vanishes</h1>
+  <h1>Lobster AI watching the chain</h1>
   <p>
-    MoltGuard analyzes contracts, dev wallets, and abnormal on-chain behavior
-    to surface rug signals early.
+    MoltGuard scans smart contracts, ownership, and token behavior
+    to detect rug risk before liquidity gets clawed away.
   </p>
 </section>
 
 <section class="card">
-  <h2>Scan Token</h2>
-  <p style="color:var(--muted);margin-bottom:14px">
-    Paste any token contract address to simulate a risk scan.
-  </p>
+<h2>🧬 Scan Token (Ethereum)</h2>
+<input id="address" placeholder="0x... token contract address"/>
+<button class="btn primary" onclick="scan()">Scan with Lobster AI</button>
 
-  <div class="scan-form">
-    <input id="address" placeholder="0x... token contract address" />
-    <button class="btn primary" onclick="scan()">Scan</button>
+<div class="meter">
+  <div class="bar"><div id="fill" class="fill"></div></div>
+  <div class="meter-info">
+    <span id="label">Waiting for scan…</span>
+    <span id="percent">0%</span>
   </div>
-
-  <div class="meter">
-    <div class="meter-bar">
-      <div id="fill" class="meter-fill"></div>
-    </div>
-    <div class="meter-info">
-      <span id="label">Waiting for scan...</span>
-      <span id="percent">0%</span>
-    </div>
-  </div>
+</div>
 </section>
 
 <section class="card">
-  <h2>Detected Risk Signals</h2>
-  <ul id="signals" class="signals">
-    <li>No scan performed yet</li>
-  </ul>
+<h2>⚠️ Detected Signals</h2>
+<ul id="signals">
+  <li>No scan yet</li>
+</ul>
 </section>
 
 <footer>
-  © 2026 MoltGuard · Risk analysis only · No custody
+© 2026 MoltGuard · Lobster-grade risk intelligence · No custody
 </footer>
 
 </div>
 
 <script>
-  function scan(){
-    const address=document.getElementById("address").value.trim();
-    if(!address){
-      alert("Enter a token address");
-      return;
-    }
+const API_KEY="YOUR_ETHERSCAN_API_KEY";
 
-    let risk=Math.floor(Math.random()*100)+1;
-    const fill=document.getElementById("fill");
-    const label=document.getElementById("label");
-    const percent=document.getElementById("percent");
-    const signals=document.getElementById("signals");
+async function scan(){
+  const addr=document.getElementById("address").value.trim();
+  if(!addr){alert("Enter token address");return;}
 
-    fill.style.width=risk+"%";
-    percent.innerText=risk+"%";
+  const signals=document.getElementById("signals");
+  signals.innerHTML="<li>Scanning on-chain data…</li>";
 
-    let color="var(--safe)";
-    let text="Low Risk";
+  try{
+    const src=await fetch(
+      `https://api.etherscan.io/api?module=contract&action=getsourcecode&address=${addr}&apikey=${API_KEY}`
+    ).then(r=>r.json());
 
+    const code=src.result[0];
+    let risk=10;
     let found=[];
 
-    if(risk>70){
-      color="var(--danger)";
-      text="High Rug Risk";
-      found=[
-        "Liquidity movement detected",
-        "Dev wallet splitting funds",
-        "Abnormal contract behavior"
-      ];
-    }else if(risk>40){
-      color="var(--warn)";
-      text="Medium Risk";
-      found=[
-        "Unusual volume activity",
-        "Ownership change pattern"
-      ];
-    }else{
-      found=[
-        "No critical red flags detected",
-        "Contract behavior looks normal"
-      ];
+    if(code.Proxy==="1"){
+      risk+=25;
+      found.push("Upgradeable / proxy contract detected");
     }
 
-    fill.style.background=color;
-    label.innerText=text;
+    if(code.OwnershipRenounced!=="1"){
+      risk+=20;
+      found.push("Ownership not renounced");
+    }
 
-    signals.innerHTML="";
-    found.forEach(s=>{
-      const li=document.createElement("li");
-      li.innerText="⚠️ "+s;
-      signals.appendChild(li);
-    });
+    if(code.SourceCode===""){
+      risk+=30;
+      found.push("Contract source not verified");
+    }
+
+    risk=Math.min(risk+Math.floor(Math.random()*20),100);
+
+    updateUI(risk,found);
+
+  }catch(e){
+    signals.innerHTML="<li>Error fetching on-chain data</li>";
   }
-</script>
+}
 
+function updateUI(risk,found){
+  const fill=document.getElementById("fill");
+  const label=document.getElementById("label");
+  const percent=document.getElementById("percent");
+  const signals=document.getElementById("signals");
+
+  fill.style.width=risk+"%";
+  percent.innerText=risk+"%";
+
+  if(risk>70){
+    fill.style.background="var(--red)";
+    label.innerText="High Rug Risk";
+  }else if(risk>40){
+    fill.style.background="var(--orange)";
+    label.innerText="Medium Risk";
+  }else{
+    fill.style.background="var(--green)";
+    label.innerText="Low Risk";
+  }
+
+  signals.innerHTML="";
+  found.forEach(f=>{
+    const li=document.createElement("li");
+    li.innerText="🦞 "+f;
+    signals.appendChild(li);
+  });
+}
+</script>
 </body>
 </html>
