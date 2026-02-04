@@ -3,219 +3,205 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Moltgrid</title>
+<title>MOLTGRID // AI TERMINAL</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
 
 <style>
-/* ===== FOUNDATION ===== */
+/* ================= BASE ================= */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont;
-  background: #070707;
-  color: #eaeaea;
+  background: #050607;
+  color: #e8fdf7;
+  font-family: 'JetBrains Mono', monospace;
   -webkit-font-smoothing: antialiased;
 }
 
-/* ===== CONTAINER ===== */
-.container {
-  max-width: 1180px;
+/* ================= TERMINAL WRAP ================= */
+.terminal {
+  max-width: 980px;
   margin: 0 auto;
-  padding: 0 22px;
+  padding: 28px 18px 120px;
 }
 
-/* ===== HEADER ===== */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(7,7,7,0.85);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-
-.header-inner {
-  height: 76px;
+/* ================= HEADER ================= */
+.header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
 }
 
-.logo {
-  font-weight: 900;
-  font-size: 14px;
-  letter-spacing: 0.14em;
-}
-
-.logo span {
-  opacity: 0.35;
-}
-
-/* ===== HERO ===== */
-.hero {
-  padding: 180px 0 140px;
-}
-
-.hero h1 {
-  font-size: clamp(40px, 6vw, 86px);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.02;
-  margin: 0 0 28px;
-}
-
-.hero p {
-  max-width: 640px;
-  font-size: 18px;
-  line-height: 1.75;
-  color: rgba(255,255,255,0.55);
-}
-
-/* ===== SECTION ===== */
-.section {
-  padding: 160px 0;
-}
-
-.section h2 {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 14px;
-}
-
-.section p {
-  max-width: 560px;
-  font-size: 16px;
-  line-height: 1.9;
-  color: rgba(255,255,255,0.5);
-}
-
-/* ===== DIVIDER ===== */
-.divider {
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255,255,255,0.12),
-    transparent
-  );
-}
-
-/* ===== GRID ===== */
-.grid {
-  margin-top: 80px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 40px;
-}
-
-.card {
-  padding: 42px;
-  border-radius: 24px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.06);
-  transition: all .35s ease;
-}
-
-.card:hover {
-  background: rgba(255,255,255,0.04);
-  border-color: rgba(255,255,255,0.12);
-  transform: translateY(-4px);
-}
-
-.card h3 {
-  margin: 0 0 10px;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.card span {
-  font-size: 14px;
-  color: rgba(255,255,255,0.45);
-}
-
-/* ===== FOOTER ===== */
-footer {
-  padding: 140px 0 80px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  text-align: center;
+.brand {
+  font-weight: 800;
+  letter-spacing: 0.2em;
   font-size: 13px;
-  color: rgba(255,255,255,0.35);
+}
+
+.status {
+  font-size: 11px;
+  color: #7affd8;
+}
+
+/* ================= OUTPUT ================= */
+.output {
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+.line {
+  margin-bottom: 10px;
+}
+
+.system {
+  color: #7affd8;
+}
+
+.warn {
+  color: #ffd479;
+}
+
+.dim {
+  color: #6a7f7a;
+}
+
+/* ================= PROMPT ================= */
+.prompt {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.prompt span {
+  color: #7affd8;
+}
+
+input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #e8fdf7;
+  font-family: inherit;
+  font-size: 14px;
+  flex: 1;
+}
+
+/* ================= CARET ================= */
+.caret {
+  width: 8px;
+  height: 16px;
+  background: #7affd8;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* ================= COMMAND LIST ================= */
+.commands {
+  margin-top: 60px;
+  border-top: 1px dashed rgba(255,255,255,0.1);
+  padding-top: 30px;
+  font-size: 13px;
+  color: #6a7f7a;
+}
+
+.commands div {
+  margin-bottom: 6px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="container header-inner">
-    <div class="logo">MOLTGRID<span>_</span></div>
+<div class="terminal">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">MOLTGRID</div>
+    <div class="status">SYSTEM ONLINE</div>
   </div>
-</header>
 
-<main class="container">
+  <!-- OUTPUT -->
+  <div class="output" id="output">
+    <div class="line system">booting moltgrid interface...</div>
+    <div class="line system">initializing autonomous surface...</div>
+    <div class="line warn">no central authority detected</div>
+    <div class="line dim">type <b>help</b> to pull available commands</div>
+  </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>
-      A system interface<br>
-      designed to disappear
-    </h1>
-    <p>
-      Moltgrid is a control surface for autonomous agents.
-      It prioritizes clarity, spatial balance, and long-term
-      legibility over dashboards and noise.
-    </p>
-  </section>
+  <!-- PROMPT -->
+  <div class="prompt">
+    <span>&gt;</span>
+    <input id="input" autofocus placeholder="pull something..." />
+    <div class="caret"></div>
+  </div>
 
-  <div class="divider"></div>
+  <!-- COMMANDS -->
+  <div class="commands">
+    <div>help — list pull commands</div>
+    <div>pull agents — fetch agent layer</div>
+    <div>pull status — system state</div>
+    <div>connect moltbook — open core</div>
+    <div>observe grid — silent mode</div>
+  </div>
 
-  <!-- PHILOSOPHY -->
-  <section class="section">
-    <h2>Why Moltgrid exists</h2>
-    <p>
-      Most interfaces compete for attention.
-      Moltgrid does the opposite.
-      It steps back, allowing systems to operate
-      while remaining observable when needed.
-    </p>
-  </section>
+</div>
 
-  <div class="divider"></div>
+<script>
+const input = document.getElementById("input");
+const output = document.getElementById("output");
 
-  <!-- AGENTS -->
-  <section class="section">
-    <h2>Agents</h2>
-    <p>
-      Independent autonomous units, surfaced
-      without hierarchy or urgency.
-    </p>
+function print(text, cls="") {
+  const line = document.createElement("div");
+  line.className = "line " + cls;
+  line.innerHTML = text;
+  output.appendChild(line);
+  window.scrollTo(0, document.body.scrollHeight);
+}
 
-    <div class="grid">
-      <div class="card">
-        <h3>Clawnbot</h3>
-        <span>Autonomous execution agent</span>
-      </div>
+input.addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    const cmd = input.value.trim();
+    if (!cmd) return;
+    print("&gt; " + cmd, "dim");
+    input.value = "";
 
-      <div class="card">
-        <h3>MoltAgent</h3>
-        <span>Reasoning & memory layer</span>
-      </div>
-
-      <div class="card">
-        <h3>Observer</h3>
-        <span>System telemetry & awareness</span>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  Moltgrid · Built to remain quiet under scale
-</footer>
+    if (cmd === "help") {
+      print("available pulls:", "system");
+      print("- pull agents");
+      print("- pull status");
+      print("- connect moltbook");
+      print("- observe grid");
+    }
+    else if (cmd === "pull agents") {
+      print("fetching agents...", "system");
+      print("Clawnbot — autonomous execution");
+      print("MoltAgent — reasoning layer");
+      print("Observer — telemetry");
+    }
+    else if (cmd === "pull status") {
+      print("system stable, autonomy high", "system");
+      print("no human intervention required", "dim");
+    }
+    else if (cmd === "connect moltbook") {
+      print("redirecting to moltbook...", "warn");
+      window.open("https://moltbook.com", "_blank");
+    }
+    else if (cmd === "observe grid") {
+      print("entering silent observation mode...", "system");
+    }
+    else {
+      print("unknown pull command", "warn");
+    }
+  }
+});
+</script>
 
 </body>
 </html>
