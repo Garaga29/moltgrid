@@ -5,161 +5,140 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Moltgrid</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
-/* =======================
-   FOUNDATION
-======================= */
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+/* ===== FOUNDATION ===== */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: 'Inter', system-ui;
-  background: #0a0a0a;
-  color: #f5f5f5;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont;
+  background: #070707;
+  color: #eaeaea;
   -webkit-font-smoothing: antialiased;
 }
 
-/* =======================
-   LAYOUT
-======================= */
-.wrapper {
-  max-width: 1100px;
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 22px;
 }
 
-/* =======================
-   HEADER
-======================= */
+/* ===== HEADER ===== */
 header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(10,10,10,0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(7,7,7,0.85);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 .header-inner {
-  height: 72px;
+  height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .logo {
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  font-size: 15px;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.14em;
 }
 
 .logo span {
-  opacity: 0.4;
+  opacity: 0.35;
 }
 
-/* =======================
-   HERO
-======================= */
+/* ===== HERO ===== */
 .hero {
-  padding: 160px 0 120px;
+  padding: 180px 0 140px;
 }
 
 .hero h1 {
-  font-size: clamp(36px, 6vw, 72px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin: 0 0 24px;
+  font-size: clamp(40px, 6vw, 86px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.02;
+  margin: 0 0 28px;
 }
 
 .hero p {
   max-width: 640px;
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: 18px;
+  line-height: 1.75;
   color: rgba(255,255,255,0.55);
 }
 
-/* =======================
-   DIVIDER
-======================= */
+/* ===== SECTION ===== */
+.section {
+  padding: 160px 0;
+}
+
+.section h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.section p {
+  max-width: 560px;
+  font-size: 16px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ===== DIVIDER ===== */
 .divider {
   height: 1px;
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.12),
     transparent
   );
-  margin: 120px 0;
 }
 
-/* =======================
-   SECTIONS
-======================= */
-.section {
-  padding: 120px 0;
-}
-
-.section h2 {
-  font-size: 28px;
-  font-weight: 600;
-  margin-bottom: 12px;
-}
-
-.section p {
-  max-width: 560px;
-  font-size: 15px;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.5);
-}
-
-/* =======================
-   GRID
-======================= */
+/* ===== GRID ===== */
 .grid {
-  margin-top: 60px;
+  margin-top: 80px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
 }
 
 .card {
-  padding: 32px;
-  border-radius: 20px;
+  padding: 42px;
+  border-radius: 24px;
   background: rgba(255,255,255,0.02);
   border: 1px solid rgba(255,255,255,0.06);
-  transition: all 0.3s ease;
+  transition: all .35s ease;
 }
 
 .card:hover {
-  background: rgba(255,255,255,0.035);
+  background: rgba(255,255,255,0.04);
   border-color: rgba(255,255,255,0.12);
+  transform: translateY(-4px);
 }
 
 .card h3 {
-  margin: 0 0 8px;
-  font-size: 18px;
+  margin: 0 0 10px;
+  font-size: 20px;
   font-weight: 600;
 }
 
 .card span {
-  font-size: 13px;
-  color: rgba(255,255,255,0.4);
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
 }
 
-/* =======================
-   FOOTER
-======================= */
+/* ===== FOOTER ===== */
 footer {
-  padding: 100px 0 60px;
+  padding: 140px 0 80px;
   border-top: 1px solid rgba(255,255,255,0.06);
   text-align: center;
   font-size: 13px;
@@ -171,23 +150,23 @@ footer {
 <body>
 
 <header>
-  <div class="wrapper header-inner">
-    <div class="logo">moltgrid<span>.</span></div>
+  <div class="container header-inner">
+    <div class="logo">MOLTGRID<span>_</span></div>
   </div>
 </header>
 
-<main class="wrapper">
+<main class="container">
 
   <!-- HERO -->
   <section class="hero">
     <h1>
-      A quiet interface<br>
-      for autonomous systems
+      A system interface<br>
+      designed to disappear
     </h1>
     <p>
-      Moltgrid is a spatial control layer designed to observe,
-      organize, and interact with autonomous agents without
-      interrupting their flow.
+      Moltgrid is a control surface for autonomous agents.
+      It prioritizes clarity, spatial balance, and long-term
+      legibility over dashboards and noise.
     </p>
   </section>
 
@@ -195,20 +174,23 @@ footer {
 
   <!-- PHILOSOPHY -->
   <section class="section">
-    <h2>Design philosophy</h2>
+    <h2>Why Moltgrid exists</h2>
     <p>
-      This interface avoids noise, urgency, and distraction.
-      It is built to remain legible under scale, pressure,
-      and long-term use.
+      Most interfaces compete for attention.
+      Moltgrid does the opposite.
+      It steps back, allowing systems to operate
+      while remaining observable when needed.
     </p>
   </section>
+
+  <div class="divider"></div>
 
   <!-- AGENTS -->
   <section class="section">
     <h2>Agents</h2>
     <p>
-      Independent systems with distinct responsibilities,
-      surfaced without hierarchy.
+      Independent autonomous units, surfaced
+      without hierarchy or urgency.
     </p>
 
     <div class="grid">
@@ -224,7 +206,7 @@ footer {
 
       <div class="card">
         <h3>Observer</h3>
-        <span>System state & telemetry</span>
+        <span>System telemetry & awareness</span>
       </div>
     </div>
   </section>
@@ -232,7 +214,7 @@ footer {
 </main>
 
 <footer>
-  Moltgrid · A system designed to stay out of the way
+  Moltgrid · Built to remain quiet under scale
 </footer>
 
 </body>
