@@ -180,3 +180,62 @@ header {
     top: 220%;
   }
 }
+/* ===============================
+   LOBSTER LOGO ANIMATED
+================================ */
+.logo-lobster svg {
+  fill: #00ffe0;
+  animation: bodyPulse 3s ease-in-out infinite;
+}
+
+.logo-lobster circle {
+  fill: #000;
+}
+
+.claw {
+  fill: none;
+  stroke: #00ffe0;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.claw.left {
+  transform-origin: 22px 32px;
+  animation: clawLeft 2.8s ease-in-out infinite;
+}
+
+.claw.right {
+  transform-origin: 42px 32px;
+  animation: clawRight 2.8s ease-in-out infinite;
+}
+
+/* ===============================
+   ANIMATIONS
+================================ */
+@keyframes bodyPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 0 rgba(0,255,224,0));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(0,255,224,0.6));
+  }
+}
+
+@keyframes clawLeft {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-12deg);
+  }
+}
+
+@keyframes clawRight {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(12deg);
+  }
+}
