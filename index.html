@@ -1,243 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MOLTGRID // AI STREAM</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RugGuard AI — Detect Rugs Before They Happen</title>
+  <meta name="description" content="RugGuard AI monitors contracts, dev wallets, and on-chain behavior to detect rugs before liquidity disappears."/>
+  <style>
+    :root {
+      --bg: #0b0e14;
+      --card: #111624;
+      --text: #e6e9f0;
+      --muted: #9aa3b2;
+      --accent: #ff3b3b;
+      --border: #1d2233;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-<style>
-/* ========= RESET ========= */
-* { box-sizing: border-box; }
-html, body {
-  margin: 0;
-  padding: 0;
-  background: #020617;
-  color: #dbeafe;
-  font-family: 'JetBrains Mono', monospace;
-  overflow-x: hidden;
-}
+    a { color: inherit; text-decoration: none; }
 
-/* ========= ANIMATED BACKGROUND ========= */
-canvas {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-}
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 32px 20px;
+    }
 
-/* ========= TERMINAL ========= */
-.terminal {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 32px 18px 120px;
-}
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 80px;
+    }
 
-/* ========= HEADER ========= */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40px;
-}
+    .logo {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.5px;
+    }
 
-.brand {
-  font-weight: 800;
-  letter-spacing: 0.25em;
-  font-size: 13px;
-  color: #60a5fa;
-}
+    .btn {
+      padding: 10px 18px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-.status {
-  font-size: 11px;
-  color: #93c5fd;
-}
+    .btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
 
-/* ========= STREAM ========= */
-.stream {
-  font-size: 14px;
-  line-height: 1.8;
-}
+    .btn:hover { opacity: 0.85; }
 
-.line {
-  margin-bottom: 8px;
-}
+    .hero {
+      text-align: center;
+      margin-bottom: 100px;
+    }
 
-.sys { color: #7dd3fc; }
-.warn { color: #fde68a; }
-.dim { color: #64748b; }
+    .hero h1 {
+      font-size: 44px;
+      margin-bottom: 16px;
+    }
 
-/* ========= PROMPT ========= */
-.prompt {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 28px;
-}
+    .hero p {
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 32px;
+      font-size: 18px;
+    }
 
-.prompt span {
-  color: #60a5fa;
-}
+    .hero .actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #e0f2fe;
-  font-family: inherit;
-  font-size: 14px;
-}
+    section {
+      margin-bottom: 80px;
+    }
 
-/* ========= CURSOR ========= */
-.cursor {
-  width: 8px;
-  height: 16px;
-  background: #60a5fa;
-  animation: blink 1s infinite;
-}
+    section h2 {
+      font-size: 28px;
+      margin-bottom: 24px;
+    }
 
-@keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
 
-/* ========= FOOT ========= */
-.footer {
-  margin-top: 80px;
-  font-size: 11px;
-  color: #475569;
-  text-align: center;
-}
-</style>
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .signals li {
+      list-style: none;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .signals li:last-child {
+      border-bottom: none;
+    }
+
+    .cta {
+      text-align: center;
+      background: linear-gradient(180deg, #111624, #0b0e14);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 60px 20px;
+    }
+
+    .cta h2 {
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 60px;
+    }
+  </style>
 </head>
-
 <body>
 
-<canvas id="bg"></canvas>
-<div class="orbit-core">
-  <div class="ring r1"></div>
-  <div class="ring r2"></div>
-  <div class="ring r3"></div>
-</div>
-<div class="terminal">
+  <div class="container">
 
-  <div class="header">
-    <div class="brand">MOLTGRID</div>
-    <div class="status">STREAM ACTIVE</div>
+    <header>
+      <div class="logo">🛡️ RugGuard AI</div>
+      <a class="btn" href="#">Early Access</a>
+    </header>
+
+    <section class="hero">
+      <h1>Detect rugs before they happen</h1>
+      <p>
+        RugGuard AI monitors smart contracts, developer wallets, and abnormal
+        on-chain behavior — before liquidity disappears.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#">Get Alerts</a>
+        <a class="btn" href="#">View Dashboard</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why RugGuard AI</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Smart Contract Monitoring</h3>
+          <p>Flags dangerous functions, ownership changes, and stealth mint logic.</p>
+        </div>
+        <div class="card">
+          <h3>Dev Wallet Intelligence</h3>
+          <p>Tracks insider wallets and detects coordinated exit behavior.</p>
+        </div>
+        <div class="card">
+          <h3>Liquidity Signals</h3>
+          <p>Monitors LP movement, volume anomalies, and wash trading.</p>
+        </div>
+        <div class="card">
+          <h3>AI Risk Scoring</h3>
+          <p>Live risk score updated as on-chain behavior changes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Early Rug Signals</h2>
+      <ul class="signals">
+        <li>✔️ Liquidity quietly moving</li>
+        <li>✔️ Dev wallets splitting funds</li>
+        <li>✔️ Contract changes before dumps</li>
+        <li>✔️ Abnormal mint activity</li>
+        <li>✔️ Hype without on-chain support</li>
+      </ul>
+    </section>
+
+    <section class="cta">
+      <h2>Trust less. Verify faster.</h2>
+      <p>
+        RugGuard AI provides risk signals — not financial advice.
+        Use tools, not blind trust.
+      </p>
+      <a class="btn primary" href="#">Join Early Access</a>
+    </section>
+
+    <footer>
+      © 2026 RugGuard AI · No custody · No wallet access
+    </footer>
+
   </div>
-
-  <div class="stream" id="stream">
-    <div class="line sys">initializing neural surface...</div>
-    <div class="line sys">synchronizing autonomous signals...</div>
-    <div class="line warn">human-readable layer enabled</div>
-    <div class="line dim">type <b>help</b> to interact</div>
-  </div>
-
-  <div class="prompt">
-    <span>&gt;</span>
-    <input id="input" placeholder="pull stream..." autofocus />
-    <div class="cursor"></div>
-  </div>
-
-  <div class="footer">
-    moltgrid · autonomous interface layer
-  </div>
-
-</div>
-
-<script>
-/* ========= BACKGROUND ANIMATION ========= */
-const canvas = document.getElementById("bg");
-const ctx = canvas.getContext("2d");
-let w, h;
-
-function resize() {
-  w = canvas.width = window.innerWidth;
-  h = canvas.height = window.innerHeight;
-}
-window.addEventListener("resize", resize);
-resize();
-
-const nodes = Array.from({ length: 90 }, () => ({
-  x: Math.random() * w,
-  y: Math.random() * h,
-  vx: (Math.random() - 0.5) * 0.3,
-  vy: (Math.random() - 0.5) * 0.3
-}));
-
-function draw() {
-  ctx.clearRect(0,0,w,h);
-
-  nodes.forEach(n => {
-    n.x += n.vx;
-    n.y += n.vy;
-    if (n.x < 0 || n.x > w) n.vx *= -1;
-    if (n.y < 0 || n.y > h) n.vy *= -1;
-
-    ctx.fillStyle = "#60a5fa";
-    ctx.beginPath();
-    ctx.arc(n.x, n.y, 1.5, 0, Math.PI*2);
-    ctx.fill();
-  });
-
-  for (let i=0;i<nodes.length;i++) {
-    for (let j=i+1;j<nodes.length;j++) {
-      const dx = nodes[i].x - nodes[j].x;
-      const dy = nodes[i].y - nodes[j].y;
-      const dist = Math.sqrt(dx*dx+dy*dy);
-      if (dist < 120) {
-        ctx.strokeStyle = "rgba(96,165,250,0.08)";
-        ctx.beginPath();
-        ctx.moveTo(nodes[i].x, nodes[i].y);
-        ctx.lineTo(nodes[j].x, nodes[j].y);
-        ctx.stroke();
-      }
-    }
-  }
-
-  requestAnimationFrame(draw);
-}
-draw();
-
-/* ========= STREAM TYPING ========= */
-const stream = document.getElementById("stream");
-const input = document.getElementById("input");
-
-function add(text, cls="") {
-  const div = document.createElement("div");
-  div.className = "line " + cls;
-  div.textContent = text;
-  stream.appendChild(div);
-  window.scrollTo(0, document.body.scrollHeight);
-}
-
-input.addEventListener("keydown", e => {
-  if (e.key === "Enter") {
-    const cmd = input.value.trim();
-    if (!cmd) return;
-    add("> " + cmd, "dim");
-    input.value = "";
-
-    if (cmd === "help") {
-      add("pull agents", "sys");
-      add("pull status", "sys");
-      add("connect moltbook", "sys");
-    } else if (cmd === "pull agents") {
-      add("Clawnbot :: execution stream online", "sys");
-      add("MoltAgent :: reasoning layer stable", "sys");
-    } else if (cmd === "pull status") {
-      add("system coherence: high", "sys");
-      add("autonomy: sustained", "dim");
-    } else if (cmd === "connect moltbook") {
-      add("opening core interface...", "warn");
-      window.open("https://moltbook.com", "_blank");
-    } else {
-      add("unknown signal", "warn");
-    }
-  }
-});
-</script>
 
 </body>
 </html>
