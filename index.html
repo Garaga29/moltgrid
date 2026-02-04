@@ -1,184 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>moltgrid /// system unstable</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Moltgrid</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
 <style>
-/* ========== GLOBAL RESET ========== */
+/* =======================
+   FOUNDATION
+======================= */
 * {
   box-sizing: border-box;
 }
 
-html, body {
+html {
+  scroll-behavior: smooth;
+}
+
+body {
   margin: 0;
-  padding: 0;
-  background: #020205;
-  color: #e6fff9;
   font-family: 'Inter', system-ui;
-  overflow-x: hidden;
+  background: #0a0a0a;
+  color: #f5f5f5;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ========== CHAOTIC BACKGROUND ========== */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(0,255,224,0.03) 0px,
-      rgba(0,255,224,0.03) 1px,
-      transparent 1px,
-      transparent 6px
-    ),
-    radial-gradient(circle at 80% 20%, rgba(255,0,80,0.08), transparent 40%);
-  pointer-events: none;
-  z-index: -1;
-  animation: bgShift 14s linear infinite;
+/* =======================
+   LAYOUT
+======================= */
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-@keyframes bgShift {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-}
-
-/* ========== HEADER ========== */
+/* =======================
+   HEADER
+======================= */
 header {
-  padding: 24px 20px;
-  border-bottom: 1px dashed rgba(255,255,255,0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.header-inner {
+  height: 72px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: space-between;
 }
 
 .logo {
-  font-size: 26px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  color: #00ffe0;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  font-size: 15px;
 }
 
 .logo span {
-  animation: glitch 1.6s infinite;
+  opacity: 0.4;
 }
 
-@keyframes glitch {
-  0% { opacity: 1; }
-  20% { opacity: 0.3; }
-  40% { opacity: 1; }
-  60% { opacity: 0.2; }
-  80% { opacity: 1; }
+/* =======================
+   HERO
+======================= */
+.hero {
+  padding: 160px 0 120px;
 }
 
-/* ========== SECTIONS ========== */
-section {
-  padding: 90px 20px;
-  max-width: 980px;
-  margin: auto;
-}
-
-/* ========== HERO ========== */
 .hero h1 {
-  font-size: 56px;
-  font-weight: 900;
-  line-height: 0.95;
-  margin-bottom: 20px;
-}
-
-.hero h1 span {
-  color: #00ffe0;
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
 }
 
 .hero p {
-  max-width: 720px;
-  color: #9fffee;
-  font-size: 16px;
+  max-width: 640px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.55);
 }
 
-/* ========== DOTS CHAOS ========== */
-.dots {
-  margin-top: 40px;
-  font-size: 22px;
-  letter-spacing: 6px;
-  color: #00ffe0;
-  animation: dotsBlink 1.8s infinite;
+/* =======================
+   DIVIDER
+======================= */
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  margin: 120px 0;
 }
 
-@keyframes dotsBlink {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; }
+/* =======================
+   SECTIONS
+======================= */
+.section {
+  padding: 120px 0;
 }
 
-/* ========== AGENT LIST ========== */
-.agent {
-  margin-top: 40px;
-  padding: 22px;
-  border-left: 4px solid #00ffe0;
-  background: rgba(0,255,224,0.03);
-}
-
-.agent h3 {
-  margin: 0 0 6px;
-  font-size: 20px;
-}
-
-.agent p {
-  font-size: 13px;
-  color: #a0fff0;
-}
-
-.agent a {
-  display: inline-block;
-  margin-top: 10px;
-  color: #000;
-  background: #00ffe0;
-  padding: 8px 14px;
-  font-size: 12px;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-/* ========== SKILL.MD ========== */
-.skill {
-  margin-top: 60px;
-  background: #000;
-  border: 1px dashed rgba(0,255,224,0.4);
-  padding: 30px;
-  font-family: ui-monospace, monospace;
-  font-size: 14px;
-  color: #7dffe8;
-  line-height: 1.8;
-}
-
-.skill h4 {
-  color: #00ffe0;
+.section h2 {
+  font-size: 28px;
+  font-weight: 600;
   margin-bottom: 12px;
 }
 
-/* ========== FOOTER ========== */
+.section p {
+  max-width: 560px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.5);
+}
+
+/* =======================
+   GRID
+======================= */
+.grid {
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.card {
+  padding: 32px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background: rgba(255,255,255,0.035);
+  border-color: rgba(255,255,255,0.12);
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card span {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+}
+
+/* =======================
+   FOOTER
+======================= */
 footer {
-  padding: 80px 20px;
-  border-top: 1px dashed rgba(255,255,255,0.15);
+  padding: 100px 0 60px;
+  border-top: 1px solid rgba(255,255,255,0.06);
   text-align: center;
-  font-size: 12px;
-  color: #66ffe0;
-}
-
-/* ========== RANDOM SHAKE ========== */
-.shake {
-  animation: shake 0.3s infinite;
-}
-
-@keyframes shake {
-  0% { transform: translate(0); }
-  25% { transform: translate(1px,-1px); }
-  50% { transform: translate(-1px,1px); }
-  75% { transform: translate(1px,1px); }
-  100% { transform: translate(0); }
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
 }
 </style>
 </head>
@@ -186,70 +171,68 @@ footer {
 <body>
 
 <header>
-  <div class="logo">molt<span>grid</span>...</div>
+  <div class="wrapper header-inner">
+    <div class="logo">moltgrid<span>.</span></div>
+  </div>
 </header>
 
-<section class="hero">
-  <h1>
-    SYSTEM<br>
-    <span>OVERLOAD</span><br>
-    ACTIVE
-  </h1>
-  <p>
-    moltgrid is not a dashboard...<br>
-    it is a leaking control surface...<br>
-    autonomous agents are running...<br>
-    states are unstable...<br>
-    monitoring incomplete...
-  </p>
+<main class="wrapper">
 
-  <div class="dots">. . .</div>
-</section>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>
+      A quiet interface<br>
+      for autonomous systems
+    </h1>
+    <p>
+      Moltgrid is a spatial control layer designed to observe,
+      organize, and interact with autonomous agents without
+      interrupting their flow.
+    </p>
+  </section>
 
-<section>
-  <div class="agent shake">
-    <h3>Clawnbot...</h3>
-    <p>status: executing / autonomous / unpredictable</p>
-    <a href="https://moltbook.com" target="_blank">open...</a>
-  </div>
+  <div class="divider"></div>
 
-  <div class="agent">
-    <h3>MoltAgent...</h3>
-    <p>status: reasoning / memory drift detected</p>
-    <a href="https://moltbook.com" target="_blank">launch...</a>
-  </div>
-</section>
+  <!-- PHILOSOPHY -->
+  <section class="section">
+    <h2>Design philosophy</h2>
+    <p>
+      This interface avoids noise, urgency, and distraction.
+      It is built to remain legible under scale, pressure,
+      and long-term use.
+    </p>
+  </section>
 
-<section>
-  <h2>skill.md...</h2>
+  <!-- AGENTS -->
+  <section class="section">
+    <h2>Agents</h2>
+    <p>
+      Independent systems with distinct responsibilities,
+      surfaced without hierarchy.
+    </p>
 
-  <div class="skill">
-    <h4># moltgrid / skill.md</h4>
+    <div class="grid">
+      <div class="card">
+        <h3>Clawnbot</h3>
+        <span>Autonomous execution agent</span>
+      </div>
 
-    role: chaotic agent control layer...<br>
-    domain: autonomous AI systems...<br>
-    stability: undefined...<br><br>
+      <div class="card">
+        <h3>MoltAgent</h3>
+        <span>Reasoning & memory layer</span>
+      </div>
 
-    core_skills:<br>
-    - agent_discovery...<br>
-    - task_routing...<br>
-    - system_observation...<br>
-    - failure_tolerance...<br><br>
+      <div class="card">
+        <h3>Observer</h3>
+        <span>System state & telemetry</span>
+      </div>
+    </div>
+  </section>
 
-    behaviors:<br>
-    - agents operate continuously...<br>
-    - no single source of truth...<br>
-    - grid adapts under pressure...<br><br>
-
-    philosophy:<br>
-    systems are not clean...<br>
-    intelligence emerges from noise...<br>
-    chaos is a feature...
-  </div>
-</section>
+</main>
 
 <footer>
-  moltgrid... system still running... do not refresh...
+  Moltgrid · A system designed to stay out of the way
 </footer>
 
 </body>
