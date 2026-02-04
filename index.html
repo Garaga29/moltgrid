@@ -3,224 +3,228 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RugGuard AI — Detect Rugs Before They Happen</title>
-  <meta name="description" content="RugGuard AI monitors contracts, dev wallets, and on-chain behavior to detect rugs before liquidity disappears."/>
+  <title>MoltGuard — On-Chain Rug Risk Monitor</title>
+  <meta name="description" content="MoltGuard monitors contracts, dev wallets, and on-chain behavior to detect rug risks early."/>
   <style>
     :root {
-      --bg: #0b0e14;
-      --card: #111624;
-      --text: #e6e9f0;
-      --muted: #9aa3b2;
-      --accent: #ff3b3b;
-      --border: #1d2233;
+      --bg:#0b0e14;
+      --card:#111624;
+      --text:#e6e9f0;
+      --muted:#9aa3b2;
+      --safe:#00d084;
+      --warn:#ffb020;
+      --danger:#ff3b3b;
+      --border:#1d2233;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,"Inter",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      padding: 32px 20px;
+    .container{max-width:1100px;margin:auto;padding:32px 20px}
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:70px;
     }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 80px;
+    .logo{font-weight:700;font-size:20px}
+    .btn{
+      padding:10px 18px;
+      border-radius:8px;
+      border:1px solid var(--border);
+      background:transparent;
+      color:var(--text);
+      cursor:pointer;
+    }
+    .btn.primary{
+      background:var(--danger);
+      border-color:var(--danger);
+      color:#fff;
     }
 
-    .logo {
-      font-weight: 700;
-      font-size: 20px;
-      letter-spacing: 0.5px;
+    .hero{text-align:center;margin-bottom:80px}
+    .hero h1{font-size:44px;margin-bottom:14px}
+    .hero p{color:var(--muted);max-width:640px;margin:0 auto 30px;font-size:18px}
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:24px;
+      margin-bottom:30px;
     }
 
-    .btn {
-      padding: 10px 18px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: transparent;
-      cursor: pointer;
-      transition: 0.2s;
+    .scan-form{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
-    .btn.primary {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
+    input{
+      flex:1;
+      min-width:220px;
+      padding:14px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:#0f1320;
+      color:var(--text);
+      font-size:15px;
     }
 
-    .btn:hover { opacity: 0.85; }
-
-    .hero {
-      text-align: center;
-      margin-bottom: 100px;
+    .meter{
+      margin-top:30px;
     }
 
-    .hero h1 {
-      font-size: 44px;
-      margin-bottom: 16px;
+    .meter-bar{
+      height:14px;
+      background:#1a2033;
+      border-radius:10px;
+      overflow:hidden;
     }
 
-    .hero p {
-      color: var(--muted);
-      max-width: 640px;
-      margin: 0 auto 32px;
-      font-size: 18px;
+    .meter-fill{
+      height:100%;
+      width:0%;
+      background:var(--safe);
+      transition:width 0.4s ease, background 0.4s ease;
     }
 
-    .hero .actions {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
+    .meter-info{
+      display:flex;
+      justify-content:space-between;
+      margin-top:10px;
+      font-size:14px;
+      color:var(--muted);
     }
 
-    section {
-      margin-bottom: 80px;
+    .signals li{
+      list-style:none;
+      padding:10px 0;
+      border-bottom:1px solid var(--border);
+      color:var(--muted);
     }
 
-    section h2 {
-      font-size: 28px;
-      margin-bottom: 24px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-    }
-
-    .card h3 {
-      margin-bottom: 8px;
-      font-size: 18px;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 15px;
-    }
-
-    .signals li {
-      list-style: none;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    .signals li:last-child {
-      border-bottom: none;
-    }
-
-    .cta {
-      text-align: center;
-      background: linear-gradient(180deg, #111624, #0b0e14);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 60px 20px;
-    }
-
-    .cta h2 {
-      margin-bottom: 16px;
-    }
-
-    .cta p {
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
-
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 60px;
+    footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      margin-top:60px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <header>
-      <div class="logo">🛡️ RugGuard AI</div>
-      <a class="btn" href="#">Early Access</a>
-    </header>
+<header>
+  <div class="logo">🛡️ MoltGuard</div>
+  <a class="btn" href="#">Early Access</a>
+</header>
 
-    <section class="hero">
-      <h1>Detect rugs before they happen</h1>
-      <p>
-        RugGuard AI monitors smart contracts, developer wallets, and abnormal
-        on-chain behavior — before liquidity disappears.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href="#">Get Alerts</a>
-        <a class="btn" href="#">View Dashboard</a>
-      </div>
-    </section>
+<section class="hero">
+  <h1>Detect rug risk before liquidity vanishes</h1>
+  <p>
+    MoltGuard analyzes contracts, dev wallets, and abnormal on-chain behavior
+    to surface rug signals early.
+  </p>
+</section>
 
-    <section>
-      <h2>Why RugGuard AI</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Smart Contract Monitoring</h3>
-          <p>Flags dangerous functions, ownership changes, and stealth mint logic.</p>
-        </div>
-        <div class="card">
-          <h3>Dev Wallet Intelligence</h3>
-          <p>Tracks insider wallets and detects coordinated exit behavior.</p>
-        </div>
-        <div class="card">
-          <h3>Liquidity Signals</h3>
-          <p>Monitors LP movement, volume anomalies, and wash trading.</p>
-        </div>
-        <div class="card">
-          <h3>AI Risk Scoring</h3>
-          <p>Live risk score updated as on-chain behavior changes.</p>
-        </div>
-      </div>
-    </section>
+<section class="card">
+  <h2>Scan Token</h2>
+  <p style="color:var(--muted);margin-bottom:14px">
+    Paste any token contract address to simulate a risk scan.
+  </p>
 
-    <section>
-      <h2>Early Rug Signals</h2>
-      <ul class="signals">
-        <li>✔️ Liquidity quietly moving</li>
-        <li>✔️ Dev wallets splitting funds</li>
-        <li>✔️ Contract changes before dumps</li>
-        <li>✔️ Abnormal mint activity</li>
-        <li>✔️ Hype without on-chain support</li>
-      </ul>
-    </section>
-
-    <section class="cta">
-      <h2>Trust less. Verify faster.</h2>
-      <p>
-        RugGuard AI provides risk signals — not financial advice.
-        Use tools, not blind trust.
-      </p>
-      <a class="btn primary" href="#">Join Early Access</a>
-    </section>
-
-    <footer>
-      © 2026 RugGuard AI · No custody · No wallet access
-    </footer>
-
+  <div class="scan-form">
+    <input id="address" placeholder="0x... token contract address" />
+    <button class="btn primary" onclick="scan()">Scan</button>
   </div>
+
+  <div class="meter">
+    <div class="meter-bar">
+      <div id="fill" class="meter-fill"></div>
+    </div>
+    <div class="meter-info">
+      <span id="label">Waiting for scan...</span>
+      <span id="percent">0%</span>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Detected Risk Signals</h2>
+  <ul id="signals" class="signals">
+    <li>No scan performed yet</li>
+  </ul>
+</section>
+
+<footer>
+  © 2026 MoltGuard · Risk analysis only · No custody
+</footer>
+
+</div>
+
+<script>
+  function scan(){
+    const address=document.getElementById("address").value.trim();
+    if(!address){
+      alert("Enter a token address");
+      return;
+    }
+
+    let risk=Math.floor(Math.random()*100)+1;
+    const fill=document.getElementById("fill");
+    const label=document.getElementById("label");
+    const percent=document.getElementById("percent");
+    const signals=document.getElementById("signals");
+
+    fill.style.width=risk+"%";
+    percent.innerText=risk+"%";
+
+    let color="var(--safe)";
+    let text="Low Risk";
+
+    let found=[];
+
+    if(risk>70){
+      color="var(--danger)";
+      text="High Rug Risk";
+      found=[
+        "Liquidity movement detected",
+        "Dev wallet splitting funds",
+        "Abnormal contract behavior"
+      ];
+    }else if(risk>40){
+      color="var(--warn)";
+      text="Medium Risk";
+      found=[
+        "Unusual volume activity",
+        "Ownership change pattern"
+      ];
+    }else{
+      found=[
+        "No critical red flags detected",
+        "Contract behavior looks normal"
+      ];
+    }
+
+    fill.style.background=color;
+    label.innerText=text;
+
+    signals.innerHTML="";
+    found.forEach(s=>{
+      const li=document.createElement("li");
+      li.innerText="⚠️ "+s;
+      signals.appendChild(li);
+    });
+  }
+</script>
 
 </body>
 </html>
