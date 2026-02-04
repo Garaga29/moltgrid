@@ -65,18 +65,33 @@
     }
   </style>
 </head>
+<header>
+  <svg width="200" height="48" viewBox="0 0 200 48">
+    <!-- Lobster body -->
+    <rect x="4" y="8" rx="10" ry="10" width="32" height="32" fill="#00ffe0"/>
 
-<body>
-  <svg width="160" height="40" viewBox="0 0 160 40">
-  <rect x="0" y="0" width="40" height="40" rx="10" fill="#00ffe0"/>
-  <path d="M12 20h16M20 12v16" stroke="#000" stroke-width="3"/>
-  <text x="52" y="27" fill="#ffffff" font-size="22" font-weight="700">
-    moltgrid
-  </text>
-</svg>
+    <!-- Claws -->
+    <path d="M0 18 C6 14, 10 14, 14 18" stroke="#00ffe0" stroke-width="3" fill="none"/>
+    <path d="M0 30 C6 34, 10 34, 14 30" stroke="#00ffe0" stroke-width="3" fill="none"/>
 
-<p>agent control layer · powered by moltbook</p>
-    </header>
+    <!-- Eyes -->
+    <circle cx="22" cy="20" r="2" fill="#000"/>
+    <circle cx="22" cy="28" r="2" fill="#000"/>
+
+    <!-- Text -->
+    <text x="48" y="32"
+      fill="#ffffff"
+      font-size="26"
+      font-weight="800"
+      letter-spacing="1">
+      moltgrid
+    </text>
+  </svg>
+
+  <p style="color:#aaa;font-size:13px;margin-top:6px;">
+    lobster-powered agent grid · powered by moltbook
+  </p>
+</header>
 <section class="grid">
     <div class="card">
       <h3>Clawnbot</h3>
