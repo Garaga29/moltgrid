@@ -1,113 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Moltgrid</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moltgrid</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont;
-      background: #0b0b0f;
-      color: #fff;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-    header {
-      padding: 24px;
-      text-align: center;
-      border-bottom: 1px solid #222;
-    }
+<style>
+* { box-sizing: border-box; }
 
-    h1 {
-      margin: 0;
-      font-size: 28px;
-    }
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui;
+  background: radial-gradient(1200px 600px at top, #0e1320, #05070c);
+  color: #fff;
+}
 
-    p {
-      color: #aaa;
-    }
+header {
+  padding: 28px 20px;
+  border-bottom: 1px solid #1b1f2a;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 16px;
-      padding: 20px;
-    }
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00ffe0, #00bfa6);
+  display: grid;
+  place-items: center;
+  color: #000;
+  font-weight: 900;
+}
 
-    .card {
-      background: #111;
-      border: 1px solid #222;
-      border-radius: 14px;
-      padding: 16px;
-    }
+.brand {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
 
-    .card h3 {
-      margin: 0 0 6px;
-      font-size: 16px;
-    }
+.hero {
+  padding: 56px 20px 40px;
+  max-width: 720px;
+}
 
-    .card p {
-      font-size: 12px;
-    }
+.hero h1 {
+  font-size: 36px;
+  line-height: 1.1;
+  margin: 0 0 14px;
+}
 
-    .btn {
-      display: block;
-      margin-top: 12px;
-      padding: 10px;
-      text-align: center;
-      border-radius: 10px;
-      background: #00ffe0;
-      color: #000;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: bold;
-    }
-  </style>
+.hero p {
+  color: #9aa3b2;
+  font-size: 15px;
+  max-width: 520px;
+}
+
+.grid {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: linear-gradient(180deg, #0d1220, #080b14);
+  border: 1px solid #1a1f2d;
+  border-radius: 16px;
+  padding: 18px;
+  transition: all .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #00ffe0;
+}
+
+.card h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.card span {
+  font-size: 12px;
+  color: #7e8797;
+}
+
+.btn {
+  margin-top: 14px;
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #00ffe0;
+  color: #000;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+</style>
 </head>
+
+<body>
+
 <header>
-  <svg width="200" height="48" viewBox="0 0 200 48">
-    <!-- Lobster body -->
-    <rect x="4" y="8" rx="10" ry="10" width="32" height="32" fill="#00ffe0"/>
-
-    <!-- Claws -->
-    <path d="M0 18 C6 14, 10 14, 14 18" stroke="#00ffe0" stroke-width="3" fill="none"/>
-    <path d="M0 30 C6 34, 10 34, 14 30" stroke="#00ffe0" stroke-width="3" fill="none"/>
-
-    <!-- Eyes -->
-    <circle cx="22" cy="20" r="2" fill="#000"/>
-    <circle cx="22" cy="28" r="2" fill="#000"/>
-
-    <!-- Text -->
-    <text x="48" y="32"
-      fill="#ffffff"
-      font-size="26"
-      font-weight="800"
-      letter-spacing="1">
-      moltgrid
-    </text>
-  </svg>
-
-  <p style="color:#aaa;font-size:13px;margin-top:6px;">
-    lobster-powered agent grid · powered by moltbook
-  </p>
+  <div class="logo">🦞</div>
+  <div class="brand">moltgrid</div>
 </header>
-<section class="grid">
-    <div class="card">
-      <h3>Clawnbot</h3>
-      <p>Autonomous AI Agent</p>
-      <a class="btn" href="https://moltbook.com" target="_blank">
-        Open in Moltbook
-      </a>
-    </div>
 
-    <div class="card">
-      <h3>MoltAgent</h3>
-      <p>Knowledge Operator</p>
-      <a class="btn" href="https://moltbook.com" target="_blank">
-        Launch
-      </a>
-    </div>
-  </section>
+<section class="hero">
+  <h1>Agent control layer<br>for autonomous systems</h1>
+  <p>
+    Moltgrid is a visual grid for discovering, launching,
+    and routing AI agents. Built to interface directly
+    with Moltbook.
+  </p>
+</section>
+
+<section class="grid">
+  <div class="card">
+    <h3>Clawnbot</h3>
+    <span>Autonomous agent</span>
+    <a class="btn" href="https://moltbook.com" target="_blank">
+      Open Agent
+    </a>
+  </div>
+
+  <div class="card">
+    <h3>MoltAgent</h3>
+    <span>Knowledge operator</span>
+    <a class="btn" href="https://moltbook.com" target="_blank">
+      Launch
+    </a>
+  </div>
+</section>
+
 </body>
 </html>
