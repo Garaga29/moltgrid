@@ -3,166 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moltgrid — Agent Control Layer</title>
+<title>moltgrid /// system unstable</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-/* ================= RESET ================= */
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* ========== GLOBAL RESET ========== */
+* {
+  box-sizing: border-box;
+}
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  background: #020205;
+  color: #e6fff9;
   font-family: 'Inter', system-ui;
-  background: radial-gradient(1200px 600px at top, #0e1320, #05070c);
-  color: #ffffff;
   overflow-x: hidden;
 }
 
-/* ================= HEADER ================= */
+/* ========== CHAOTIC BACKGROUND ========== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(0,255,224,0.03) 0px,
+      rgba(0,255,224,0.03) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    radial-gradient(circle at 80% 20%, rgba(255,0,80,0.08), transparent 40%);
+  pointer-events: none;
+  z-index: -1;
+  animation: bgShift 14s linear infinite;
+}
+
+@keyframes bgShift {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* ========== HEADER ========== */
 header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(12px);
-  background: rgba(5,7,12,0.7);
-  border-bottom: 1px solid #1b1f2a;
-  padding: 18px 20px;
+  padding: 24px 20px;
+  border-bottom: 1px dashed rgba(255,255,255,0.15);
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
 .logo {
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #00ffe0, #00bfa6);
-  display: grid;
-  place-items: center;
+  font-size: 26px;
   font-weight: 900;
-  color: #000;
+  letter-spacing: 2px;
+  color: #00ffe0;
 }
 
-.brand {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: 0.6px;
+.logo span {
+  animation: glitch 1.6s infinite;
 }
 
-/* ================= SECTIONS ================= */
+@keyframes glitch {
+  0% { opacity: 1; }
+  20% { opacity: 0.3; }
+  40% { opacity: 1; }
+  60% { opacity: 0.2; }
+  80% { opacity: 1; }
+}
+
+/* ========== SECTIONS ========== */
 section {
-  padding: 80px 20px;
+  padding: 90px 20px;
   max-width: 980px;
   margin: auto;
 }
 
-.section-title {
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 12px;
-}
-
-.section-desc {
-  color: #9aa3b2;
-  max-width: 640px;
-  font-size: 15px;
-}
-
-/* ================= HERO ================= */
-.hero {
-  padding-top: 120px;
-}
-
+/* ========== HERO ========== */
 .hero h1 {
-  font-size: 44px;
-  line-height: 1.05;
-  margin-bottom: 18px;
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 0.95;
+  margin-bottom: 20px;
+}
+
+.hero h1 span {
+  color: #00ffe0;
 }
 
 .hero p {
+  max-width: 720px;
+  color: #9fffee;
   font-size: 16px;
-  color: #9aa3b2;
-  max-width: 680px;
 }
 
-/* ================= GRID ================= */
-.grid {
+/* ========== DOTS CHAOS ========== */
+.dots {
   margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 18px;
+  font-size: 22px;
+  letter-spacing: 6px;
+  color: #00ffe0;
+  animation: dotsBlink 1.8s infinite;
 }
 
-.card {
-  position: relative;
-  overflow: hidden;
-  padding: 20px;
-  border-radius: 18px;
-  background: linear-gradient(180deg, #0d1220, #080b14);
-  border: 1px solid #1a1f2d;
-  transition: all .25s ease;
+@keyframes dotsBlink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
 }
 
-.card:hover {
-  transform: translateY(-6px);
-  border-color: #00ffe0;
-  box-shadow: 0 12px 40px rgba(0,255,224,0.15);
+/* ========== AGENT LIST ========== */
+.agent {
+  margin-top: 40px;
+  padding: 22px;
+  border-left: 4px solid #00ffe0;
+  background: rgba(0,255,224,0.03);
 }
 
-.card h3 {
+.agent h3 {
   margin: 0 0 6px;
-  font-size: 18px;
+  font-size: 20px;
 }
 
-.card span {
+.agent p {
   font-size: 13px;
-  color: #7e8797;
+  color: #a0fff0;
 }
 
-.btn {
+.agent a {
   display: inline-block;
-  margin-top: 16px;
-  padding: 10px 16px;
-  border-radius: 12px;
-  background: #00ffe0;
+  margin-top: 10px;
   color: #000;
-  font-size: 13px;
-  font-weight: 700;
+  background: #00ffe0;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 800;
   text-decoration: none;
 }
 
-/* ================= SKILL.MD ================= */
-.skill-box {
-  margin-top: 32px;
-  background: #070a12;
-  border: 1px solid #1a1f2d;
-  border-radius: 18px;
-  padding: 26px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+/* ========== SKILL.MD ========== */
+.skill {
+  margin-top: 60px;
+  background: #000;
+  border: 1px dashed rgba(0,255,224,0.4);
+  padding: 30px;
+  font-family: ui-monospace, monospace;
   font-size: 14px;
-  color: #cfd6e4;
-  line-height: 1.7;
+  color: #7dffe8;
+  line-height: 1.8;
 }
 
-.skill-box h4 {
-  margin: 0 0 12px;
+.skill h4 {
   color: #00ffe0;
-  font-size: 15px;
+  margin-bottom: 12px;
 }
 
-.skill-box code {
-  color: #9efbe4;
-}
-
-/* ================= FOOTER ================= */
+/* ========== FOOTER ========== */
 footer {
-  padding: 60px 20px;
-  border-top: 1px solid #1b1f2a;
+  padding: 80px 20px;
+  border-top: 1px dashed rgba(255,255,255,0.15);
   text-align: center;
-  color: #7e8797;
-  font-size: 13px;
+  font-size: 12px;
+  color: #66ffe0;
+}
+
+/* ========== RANDOM SHAKE ========== */
+.shake {
+  animation: shake 0.3s infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(1px,-1px); }
+  50% { transform: translate(-1px,1px); }
+  75% { transform: translate(1px,1px); }
+  100% { transform: translate(0); }
 }
 </style>
 </head>
@@ -170,103 +186,70 @@ footer {
 <body>
 
 <header>
-  <div class="logo">🦞</div>
-  <div class="brand">moltgrid</div>
+  <div class="logo">molt<span>grid</span>...</div>
 </header>
 
-<!-- ================= HERO ================= -->
 <section class="hero">
   <h1>
-    Agent control layer<br>
-    for autonomous systems
+    SYSTEM<br>
+    <span>OVERLOAD</span><br>
+    ACTIVE
   </h1>
   <p>
-    Moltgrid is a visual control surface for discovering, routing,
-    and deploying autonomous AI agents. Built as a structured
-    interface on top of Moltbook.
+    moltgrid is not a dashboard...<br>
+    it is a leaking control surface...<br>
+    autonomous agents are running...<br>
+    states are unstable...<br>
+    monitoring incomplete...
   </p>
+
+  <div class="dots">. . .</div>
 </section>
 
-<!-- ================= AGENTS ================= -->
 <section>
-  <div class="section-title">Agents</div>
-  <div class="section-desc">
-    Modular autonomous agents operating across tasks,
-    memory, and execution layers.
+  <div class="agent shake">
+    <h3>Clawnbot...</h3>
+    <p>status: executing / autonomous / unpredictable</p>
+    <a href="https://moltbook.com" target="_blank">open...</a>
   </div>
 
-  <div class="grid">
-    <div class="card">
-      <h3>Clawnbot</h3>
-      <span>Autonomous execution agent</span>
-      <a class="btn" href="https://moltbook.com" target="_blank">Open in Moltbook</a>
-    </div>
-
-    <div class="card">
-      <h3>MoltAgent</h3>
-      <span>Knowledge & reasoning layer</span>
-      <a class="btn" href="https://moltbook.com" target="_blank">Launch</a>
-    </div>
-
-    <div class="card">
-      <h3>GridWatcher</h3>
-      <span>Status & orchestration agent</span>
-      <a class="btn" href="https://moltbook.com" target="_blank">Inspect</a>
-    </div>
+  <div class="agent">
+    <h3>MoltAgent...</h3>
+    <p>status: reasoning / memory drift detected</p>
+    <a href="https://moltbook.com" target="_blank">launch...</a>
   </div>
 </section>
 
-<!-- ================= SKILL.MD ================= -->
-<section id="skills">
-  <div class="section-title">skill.md</div>
-  <div class="section-desc">
-    Declarative capability file describing how agents behave,
-    coordinate, and execute tasks.
-  </div>
+<section>
+  <h2>skill.md...</h2>
 
-  <div class="skill-box">
+  <div class="skill">
     <h4># moltgrid / skill.md</h4>
 
-    <code>
-- role: Agent Control Layer<br>
-- domain: Autonomous AI Systems<br>
-- interface: Visual Grid + Routing<br><br>
+    role: chaotic agent control layer...<br>
+    domain: autonomous AI systems...<br>
+    stability: undefined...<br><br>
 
-## core_skills<br>
-- agent_discovery<br>
-- agent_routing<br>
-- task_orchestration<br>
-- system_observability<br><br>
+    core_skills:<br>
+    - agent_discovery...<br>
+    - task_routing...<br>
+    - system_observation...<br>
+    - failure_tolerance...<br><br>
 
-## behaviors<br>
-- monitors agent lifecycle<br>
-- routes tasks based on capability<br>
-- surfaces agent state in real time<br><br>
+    behaviors:<br>
+    - agents operate continuously...<br>
+    - no single source of truth...<br>
+    - grid adapts under pressure...<br><br>
 
-## integrations<br>
-- moltbook.com<br>
-- external agent endpoints<br><br>
-
-## philosophy<br>
-Agents are not apps.<br>
-They are systems that evolve, coordinate,<br>
-and operate continuously.
-    </code>
-  </div>
-</section>
-
-<!-- ================= PHILOSOPHY ================= -->
-<section>
-  <div class="section-title">Design Philosophy</div>
-  <div class="section-desc">
-    Moltgrid is intentionally minimal, functional,
-    and system-oriented. It avoids dashboards that
-    obscure behavior and instead exposes structure.
+    philosophy:<br>
+    systems are not clean...<br>
+    intelligence emerges from noise...<br>
+    chaos is a feature...
   </div>
 </section>
 
 <footer>
-  © 2026 moltgrid · powered by moltbook
+  moltgrid... system still running... do not refresh...
 </footer>
 
 </body>
