@@ -1,0 +1,72 @@
+/* ========= ORBIT CORE ========= */
+.orbit-core {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 420px;
+  height: 420px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ========= RINGS ========= */
+.ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(96,165,250,0.18);
+  box-shadow: 0 0 40px rgba(96,165,250,0.08);
+  animation: spin linear infinite;
+}
+
+/* ring variations */
+.r1 {
+  transform: rotateX(65deg) rotateZ(0deg);
+  animation-duration: 26s;
+}
+
+.r2 {
+  inset: 40px;
+  transform: rotateX(75deg) rotateZ(90deg);
+  animation-duration: 34s;
+  border-color: rgba(147,197,253,0.18);
+}
+
+.r3 {
+  inset: 80px;
+  transform: rotateX(85deg) rotateZ(45deg);
+  animation-duration: 42s;
+  border-color: rgba(56,189,248,0.15);
+}
+
+/* ========= SPIN ========= */
+@keyframes spin {
+  from {
+    transform: rotateX(var(--x,70deg)) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(var(--x,70deg)) rotateZ(360deg);
+  }
+}
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 768px) {
+  .orbit-core {
+    width: 300px;
+    height: 300px;
+  }
+}
+.ring::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(96,165,250,0.15);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: .4; }
+  50% { opacity: .9; }
+}
